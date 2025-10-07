@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}提交新的期刊指南{% endblock %}
+
+{% block content %}
+    <h1>提交新的期刊指南</h1>
+    <form method="post">
+        <label for="journal_name" class="required">期刊全称:</label>
+        <input type="text" id="journal_name" name="journal_name" required>
+
+        <label for="issn">ISSN:</label>
+        <input type="text" id="issn" name="issn">
+
+        <label for="publisher">出版社:</label>
+        <input type="text" id="publisher" name="publisher">
+
+        <label for="impact_factor">影响因子:</label>
+        <input type="number" step="0.001" id="impact_factor" name="impact_factor">
+
+        <label for="formatting_requirements">稿件格式:</label>
+        <input type="text" id="formatting_requirements" name="formatting_requirements" placeholder="例如: Word, LaTeX">
+
+        <label for="font_specifications">字体要求:</label>
+        <input type="text" id="font_specifications" name="font_specifications" placeholder="例如: Times New Roman, 12pt">
+
+        <label for="word_count_limit">字数限制:</label>
+        <input type="number" id="word_count_limit" name="word_count_limit">
+
+        <label for="reference_style">参考文献格式:</label>
+        <input type="text" id="reference_style" name="reference_style" placeholder="例如: APA 7th, Vancouver">
+
+        <label for="reference_count_limit">参考文献数量限制:</label>
+        <input type="number" id="reference_count_limit" name="reference_count_limit">
+
+        <label for="submission_url">官方投稿网址:</label>
+        <input type="url" id="submission_url" name="submission_url">
+
+        <label for="official_guidelines_url" class="required">官方指南链接:</label>
+        <input type="url" id="official_guidelines_url" name="official_guidelines_url" required>
+
+        <label for="notes">其他备注:</label>
+        <textarea id="notes" name="notes" rows="4"></textarea>
+
+        <div></div>
+        <button type="submit">提交信息</button>
+    </form>
+{% endblock %}

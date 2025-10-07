@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}期刊列表{% endblock %}
+
+{% block content %}
+    <div class="search-form">
+        <form action="{{ url_for('search') }}" method="get">
+            <input type="text" name="journal_name" placeholder="期刊名称..." value="{{ request.args.get('journal_name', '') }}">
+            <input type="number" step="0.1" name="impact_factor" placeholder="影响因子不低于..." value="{{ request.args.get('impact_factor', '') }}">
+            <button type="submit">搜索</button>
+            <a href="{{ url_for('journals_list') }}">清空筛选</a>
+        </form>
+    </div>
+    <hr>
+    <a href="{{ url_for('submit') }}" class="button">+ 提交新期刊</a>
+    
+    <h2>结果列表</h2>
+    <ul>
+        {% for journal in journals %}
+        <li>
+            <a href="{{ url_for('journal_detail', journal_id=journal.id) }}">
+                {{ journal.journal_name }}
+            </a>
+            {% if journal.impact_factor %}
+                (影响因子: {{ journal.impact_factor }})
+            {% endif %}
+        </li>
+        {% else %}
+        <li>没有找到匹配的期刊。</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
