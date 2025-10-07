@@ -1,0 +1,19 @@
+services:
+  # Flask Web Service
+  - type: web
+    name: flask-journal-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: journal-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true # 让 Render 自动生成一个随机的安全密钥
+
+  # PostgreSQL Database
+  - type: psql
+    name: journal-db
+    plan: free # This is the free tier
